@@ -11,6 +11,7 @@ def apiOverview(request):
 	api_urls = {
 		'P_List':'/patient-list/',
 		'D_List':'/doctor-list/',
+		'ProblemSolution_List':'/problemsolution-list/',
 		# 'Detail View':'/patient-detail/<str:pk>/',
 		}
 
@@ -32,4 +33,10 @@ def patientList(request):
 def doctorList(request):
 	doctor = DoctorDetail.objects.all()
 	serializer = DoctorDetailSerializer(doctor, many=True)
+	return Response(serializer.data)
+
+@api_view(['GET'])
+def problemsolutionList(request):
+	data = ProblemAndSolution.objects.all()
+	serializer = DoctorDetailSerializer(data, many=True)
 	return Response(serializer.data)

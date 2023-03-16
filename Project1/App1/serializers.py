@@ -17,13 +17,8 @@ class DoctorDetailSerializer(serializers.ModelSerializer):
 		model = DoctorDetail
 		fields ='__all__'
 		
-class PatientProblemSerializer(serializers.ModelSerializer):
+class ProblemAndSolutionSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = PatientProblem
-		fields ='__all__'
-		
-class DoctorSolutionSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = DoctorSolution
+		model = ProblemAndSolution
 		fields ='__all__'
 		

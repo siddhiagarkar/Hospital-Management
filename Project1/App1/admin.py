@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, PatientDetail, DoctorDetail, PatientProblem, DoctorSolution
+from .models import Category, PatientDetail, DoctorDetail, ProblemAndSolution
 
 # Register your models here.
 
@@ -7,10 +7,6 @@ admin.site.register(Category)
 admin.site.register(PatientDetail)
 admin.site.register(DoctorDetail)
 
-@admin.register(PatientProblem)
-class PatientProblemAdmin(admin.ModelAdmin):
-    list_display = ('user', 'problem', 'your_choice')
-
-@admin.register(DoctorSolution)
-class DoctorSolutionAdmin(admin.ModelAdmin):
+@admin.register(ProblemAndSolution)
+class ProblemAndSolutionAdmin(admin.ModelAdmin):
     list_display = ('patient', 'doctor', 'problem', 'solution')

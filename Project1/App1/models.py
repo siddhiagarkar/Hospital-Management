@@ -29,17 +29,8 @@ class DoctorDetail(models.Model):
     def __str__(self):
         return "Dr. "+ self.doc_fullname
 
-class PatientProblem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=True)
-    problem = models.CharField(max_length=300)
-    your_choice=models.ForeignKey(Category,on_delete=models.CASCADE, default=True)
-    doc_choice = models.ForeignKey(DoctorDetail, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.problem
-
-class DoctorSolution(models.Model):
+class ProblemAndSolution(models.Model):
     patient = models.ForeignKey(PatientDetail, on_delete=models.CASCADE, default=True)
     doctor = models.ForeignKey(DoctorDetail, on_delete=models.CASCADE, default=True)
-    problem = models.ForeignKey(PatientProblem, on_delete=models.CASCADE, default=True)
+    problem = models.CharField(max_length=400, default=True)
     solution = models.CharField(max_length=400, default=False)

@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import *
 from .models import *
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 
@@ -40,3 +42,23 @@ def problemsolutionList(request):
 	data = ProblemAndSolution.objects.all()
 	serializer = DoctorDetailSerializer(data, many=True)
 	return Response(serializer.data)
+
+def login_view(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        return redirect('store')
+    else:
+        print('USER NOT FOUND')
+
+    context = {}
+    return render(request, 'login.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('store')
+    # Redirect to a success page.
+
